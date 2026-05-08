@@ -1,0 +1,11 @@
+# 自動更新スクリプトのログ
+update.log
+
+# 旧PCにあった一時ファイル (誤コミット防止)
+_*.html
+_*.py
+_*.js
+
+# OS生成ファイル
+.DS_Store
+Thumbs.db
