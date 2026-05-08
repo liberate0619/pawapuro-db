@@ -26,8 +26,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [[ -n "$(git status --porcelain characters.json pawapuro_db.html)" ]]; then
-            git add characters.json pawapuro_db.html
+          git add characters.json index.html details/
+          if [[ -n "$(git diff --cached --name-only)" ]]; then
             git commit -m "auto: characters update $(date -u +'%Y-%m-%d')"
             git push
             echo "✓ Updated and pushed."

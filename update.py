@@ -6,16 +6,21 @@
 を実行すると:
   1. gamewith.jp から投手/野手/彼女・相棒のキャラ一覧をダウンロード
   2. HTMLを解析して characters.json を再生成
-  3. pawapuro_db.html を再ビルド (所有データはブラウザの localStorage に保存されているため消えない)
+  3. index.html を再ビルド (所有データはブラウザの localStorage に保存されているため消えない)
 """
 import json
 import re
 import sys
+import time
 import urllib.request
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 BASE = Path(__file__).parent
+
+DETAILS_DIR = BASE / "details"
+DETAILS_INDEX = DETAILS_DIR / "index.json"
+GAMEWITH_GAME_ID = "112"  # パワプロアプリの gamewith ID
 
 # 各ページの「キャラ一覧」見出しを示すパターン (h2 内のテキストを正規表現でゆるくマッチ)
 PAGES = {
@@ -121,6 +126,130 @@ def parse_table(table_html: str) -> list[dict]:
         info["eval_text"] = strip_tags(tds[3]) if len(tds) >= 4 else ""
         rows.append(info)
     return rows
+
+
+# -- 個別キャラページ処理 -----------------------------------------
+
+VOTE_ID_RE = re.compile(r'<gds-walkthrough-vote\s+walkthrough-game-id="(\d+)"\s+walkthrough-vote-id="(\d+)"')
+ARTICLE_BODY_RE = re.compile(r'<div id="article-body"[^>]*>')
+DETAIL_END_RE = re.compile(
+    r'<div class="modal-wrap js-login-modal"'
+    r'|<div class="overlay-layer js-login-modal-overlay"'
+    r'|<script type="text/javascript">\s*function fuel_set_csrf'
+    r'|<div id="js-enquete-template"'
+)
+
+
+def extract_main_content(html: str) -> str:
+    """個別キャラページのHTMLから本文部分のみ抽出 (広告・スクリプト等を除去)。"""
+    m = ARTICLE_BODY_RE.search(html)
+    if not m:
+        return ""
+    start = m.end()
+    end_m = DETAIL_END_RE.search(html, start)
+    end = end_m.start() if end_m else min(start + 200000, len(html))
+    body = html[start:end]
+    # クリーンアップ
+    body = re.sub(r"<script\b[^>]*>.*?</script>", "", body, flags=re.DOTALL)
+    body = re.sub(r"<style\b[^>]*>.*?</style>", "", body, flags=re.DOTALL)
+    body = re.sub(r"<gds-walkthrough-vote[^>]*></gds-walkthrough-vote>", "", body)
+    body = re.sub(r"<ins\b[^>]*>.*?</ins>", "", body, flags=re.DOTALL)
+    body = re.sub(r"<iframe\b[^>]*>.*?</iframe>", "", body, flags=re.DOTALL)
+    body = re.sub(r"<div\s+class=['\"][^'\"]*\bad[a-z-]*\b[^'\"]*['\"][^>]*>.*?</div>",
+                  "", body, flags=re.DOTALL | re.IGNORECASE)
+    # 内部リンクは新しいタブで開かせる (元サイト側ページに飛ぶため)
+    body = re.sub(r"<a\s+", '<a target="_blank" rel="noopener" ', body)
+    return body.strip()
+
+
+def load_details_index() -> dict:
+    if DETAILS_INDEX.exists():
+        try:
+            return json.loads(DETAILS_INDEX.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {}
+
+
+def save_details_index(idx: dict) -> None:
+    DETAILS_DIR.mkdir(exist_ok=True)
+    DETAILS_INDEX.write_text(
+        json.dumps(idx, ensure_ascii=False, indent=2, sort_keys=True),
+        encoding="utf-8",
+    )
+
+
+def fetch_char_detail(char_id: str, char_url: str) -> dict:
+    """個別キャラページを取得して vote_id と本文HTMLを返す。本文は details/<id>.html へ保存。"""
+    try:
+        html = download(char_url)
+    except Exception as e:
+        print(f"  ! {char_id} fetch失敗: {e}")
+        return {"vote_id": "", "has_detail": False}
+
+    vote_id = ""
+    vm = VOTE_ID_RE.search(html)
+    if vm:
+        vote_id = vm.group(2)
+
+    content = extract_main_content(html)
+    info = {"vote_id": vote_id, "has_detail": bool(content)}
+
+    if content:
+        DETAILS_DIR.mkdir(exist_ok=True)
+        (DETAILS_DIR / f"{char_id}.html").write_text(content, encoding="utf-8")
+
+    return info
+
+
+def fetch_score(vote_id: str) -> dict:
+    """投票スコアAPI を叩いて {score, count} を返す。"""
+    url = f"https://img.gamewith.jp/walkthrough/vote/{GAMEWITH_GAME_ID}/{vote_id}.json"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            data = json.loads(r.read().decode("utf-8"))
+        ts = data.get("totalScore", 0)
+        tc = data.get("totalCount", 0)
+        avg = round(ts / tc * 10) / 10 if tc else 0.0
+        return {"score": avg, "count": tc}
+    except Exception:
+        return {"score": 0.0, "count": 0}
+
+
+def fetch_all_details_and_scores(chars: list[dict]) -> tuple[dict, dict]:
+    """キャラリスト全体について、新規キャラの詳細取得と全キャラのスコア取得を行う。
+
+    Returns: (details_idx, scores_dict)
+    """
+    idx = load_details_index()
+    scores: dict[str, dict] = {}
+
+    new_count = 0
+    score_ok = 0
+    for i, c in enumerate(chars):
+        cid = c["id"]
+        # 詳細(vote_id付き)が未取得 or HTMLファイルが消えている場合のみ再取得
+        info = idx.get(cid)
+        html_path = DETAILS_DIR / f"{cid}.html"
+        if not info or not info.get("vote_id") or not html_path.exists():
+            print(f"  [{i+1:3d}/{len(chars)}] detail取得: {cid} {c['name']}")
+            info = fetch_char_detail(cid, c["url"])
+            idx[cid] = info
+            new_count += 1
+            time.sleep(0.4)  # 礼儀
+
+        vote_id = info.get("vote_id") if info else ""
+        if vote_id:
+            sc = fetch_score(vote_id)
+            scores[cid] = sc
+            if sc["count"] > 0:
+                score_ok += 1
+            time.sleep(0.12)
+
+    save_details_index(idx)
+    print(f"  新規詳細: {new_count} 件 / スコア取得: {len(scores)} 件 (うち投票あり {score_ok} 件)")
+    return idx, scores
 
 
 # -- HTMLビルド処理 ----------------------------------------------
@@ -294,6 +423,26 @@ header .stats b { color: #ffe066; }
   padding: 1px 4px;
   border-radius: 3px;
 }
+.card .score-badge {
+  position: absolute;
+  bottom: 36px;
+  right: 4px;
+  background: linear-gradient(135deg, #ffe066, #ffaa00);
+  color: #4a2f00;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+  padding: 2px 5px;
+  border-radius: 8px;
+  border: 1px solid #c89a00;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+}
+.card .score-badge.no-vote {
+  background: #e6ebf2;
+  color: #768599;
+  border-color: #c4cfdb;
+  text-shadow: none;
+}
 #grid.hidden-not-owned .card:not(.owned) { display: none; }
 #empty {
   text-align: center;
@@ -371,6 +520,96 @@ footer a { color: #1e4ec8; }
 }
 .modal .radio-group label {
   display: flex; align-items: center; gap: 6px; cursor: pointer;
+}
+
+/* 詳細モーダル */
+.modal.modal-detail {
+  max-width: 800px;
+  width: 95%;
+  padding: 0;
+  display: flex; flex-direction: column;
+  max-height: 92vh;
+}
+.modal.modal-detail .detail-header {
+  padding: 14px 16px 12px;
+  display: flex; gap: 12px; align-items: flex-start;
+  border-bottom: 1px solid #d0dae6;
+  background: #fafbfd;
+  flex-shrink: 0;
+}
+.modal.modal-detail .detail-header img {
+  width: 64px; height: 64px; border-radius: 6px; flex-shrink: 0;
+}
+.modal.modal-detail .detail-header .info { flex: 1; min-width: 0; }
+.modal.modal-detail .detail-header h2 {
+  margin: 0 0 4px; font-size: 16px;
+}
+.modal.modal-detail .detail-header .meta {
+  font-size: 11px; color: #57667a; margin: 0 0 4px;
+}
+.modal.modal-detail .detail-header .score-line {
+  font-size: 13px; margin: 4px 0 0;
+}
+.modal.modal-detail .detail-header .score-line .big {
+  font-size: 22px; font-weight: 800;
+  color: #d97800;
+}
+.modal.modal-detail .detail-header .score-line .dim {
+  color: #768599; font-size: 11px;
+}
+.modal.modal-detail .detail-body {
+  padding: 12px 16px;
+  overflow: auto;
+  flex: 1;
+  font-size: 12.5px; line-height: 1.6;
+}
+.modal.modal-detail .detail-body h2,
+.modal.modal-detail .detail-body h3,
+.modal.modal-detail .detail-body h4 {
+  margin: 16px 0 6px; padding-bottom: 4px;
+  border-bottom: 1px solid #d0dae6;
+  font-size: 14px; color: #112980;
+}
+.modal.modal-detail .detail-body h3 { font-size: 13px; }
+.modal.modal-detail .detail-body h4 { font-size: 12px; border-bottom: none; }
+.modal.modal-detail .detail-body table {
+  border-collapse: collapse; margin: 6px 0;
+  width: 100%; max-width: 100%;
+  font-size: 11.5px;
+}
+.modal.modal-detail .detail-body th,
+.modal.modal-detail .detail-body td {
+  border: 1px solid #d0dae6; padding: 4px 6px;
+  vertical-align: top; line-height: 1.4;
+}
+.modal.modal-detail .detail-body th {
+  background: #eef3f9; font-weight: 600; color: #112980;
+}
+.modal.modal-detail .detail-body a {
+  color: #1e4ec8; text-decoration: none;
+}
+.modal.modal-detail .detail-body a:hover { text-decoration: underline; }
+.modal.modal-detail .detail-body .loading,
+.modal.modal-detail .detail-body .error {
+  text-align: center; padding: 30px; color: #768599;
+}
+.modal.modal-detail .detail-body .error { color: #c84040; }
+.modal.modal-detail .detail-footer {
+  padding: 10px 16px; background: #fafbfd;
+  border-top: 1px solid #d0dae6; flex-shrink: 0;
+  font-size: 12px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.modal.modal-detail .detail-footer a {
+  color: #1e4ec8; text-decoration: none;
+}
+.modal.modal-detail .detail-footer a:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .modal.modal-detail { width: 98%; max-height: 95vh; }
+  .modal.modal-detail .detail-header img { width: 48px; height: 48px; }
+  .modal.modal-detail .detail-header h2 { font-size: 14px; }
+  .modal.modal-detail .detail-body { padding: 10px 12px; font-size: 11.5px; }
 }
 </style>
 </head>
@@ -457,6 +696,25 @@ footer a { color: #1e4ec8; }
     </div>
   </div>
 
+  <div class="modal modal-detail" id="modal-detail" style="display:none;">
+    <button class="modal-close" data-close aria-label="閉じる">×</button>
+    <div class="detail-header">
+      <img id="detail-icon" src="" alt="">
+      <div class="info">
+        <h2 id="detail-name"></h2>
+        <p class="meta" id="detail-meta"></p>
+        <p class="score-line" id="detail-score-line"></p>
+      </div>
+    </div>
+    <div class="detail-body" id="detail-body">
+      <div class="loading">読み込み中…</div>
+    </div>
+    <div class="detail-footer">
+      <span id="detail-id-info" class="dim" style="font-size:10px;color:#768599;"></span>
+      <a id="detail-link" target="_blank" rel="noopener">▶ gamewith.jp で開く</a>
+    </div>
+  </div>
+
   <div class="modal" id="modal-import" style="display:none;">
     <button class="modal-close" data-close aria-label="閉じる">×</button>
     <h2>所有キャラをインポート</h2>
@@ -530,10 +788,14 @@ function render() {
 
     const escaped = c.n.replace(/[<>&"]/g, ch => ({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"})[ch]);
     const escapedShort = c.sn.replace(/[<>&"]/g, ch => ({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"})[ch]);
-    html += `<div class="card${isOwned ? " owned" : ""}" data-key="${key}" data-url="${c.u}">
+    const scoreBadge = (c.scn > 0)
+      ? `<div class="score-badge" title="みんなの評価 ${c.sc}点 / ${c.scn}票">${c.sc.toFixed(1)}</div>`
+      : (c.sc !== undefined ? `<div class="score-badge no-vote" title="未投票">-</div>` : "");
+    html += `<div class="card${isOwned ? " owned" : ""}" data-key="${key}" data-id="${c.id}" data-url="${c.u}">
       <div class="role-badge">${c.r || ""}</div>
       ${c.pp ? `<div class="pp-badge">${c.pp}</div>` : ""}
       <div class="check">${isOwned ? "✓" : ""}</div>
+      ${scoreBadge}
       <div class="icon-wrap"><img src="${c.i}" alt="${escapedShort}" loading="lazy"></div>
       <div class="name">${escaped}</div>
       <div class="meta">${(c.cs || []).map(x => CATEGORY_LABEL[x] || x).join("/")}・${(c.t || []).join("/")}</div>
@@ -546,19 +808,67 @@ function render() {
   document.getElementById("empty").style.display = shown === 0 ? "" : "none";
 }
 
+// id→data の高速マップ
+const DATA_BY_ID = new Map(DATA.map(c => [c.id, c]));
+
 document.getElementById("grid").addEventListener("click", (e) => {
   const card = e.target.closest(".card");
   if (!card) return;
-  const key = card.dataset.key;
   if (mode) {
+    const key = card.dataset.key;
     if (owned.has(key)) owned.delete(key);
     else owned.add(key);
     saveOwned();
     render();
   } else {
-    window.open(card.dataset.url, "_blank", "noopener");
+    const c = DATA_BY_ID.get(card.dataset.id);
+    if (c) openDetail(c);
   }
 });
+
+async function openDetail(c) {
+  document.getElementById("detail-icon").src = c.i;
+  document.getElementById("detail-icon").alt = c.sn;
+  document.getElementById("detail-name").textContent = c.n;
+  document.getElementById("detail-meta").textContent =
+    [(c.cs || []).map(x => CATEGORY_LABEL[x] || x).join("/"),
+     c.r,
+     c.pp,
+     (c.t || []).join("/")].filter(Boolean).join(" ・ ");
+
+  const sl = document.getElementById("detail-score-line");
+  if (c.scn > 0) {
+    sl.innerHTML = `<span class="big">${c.sc.toFixed(1)}</span> 点 <span class="dim">(${c.scn} 票)</span>`;
+  } else if (c.sc !== undefined) {
+    sl.innerHTML = `<span class="dim">みんなの評価: 未投票</span>`;
+  } else {
+    sl.innerHTML = "";
+  }
+
+  document.getElementById("detail-link").href = c.u;
+  document.getElementById("detail-id-info").textContent = `ID: ${c.id}`;
+
+  const body = document.getElementById("detail-body");
+  body.innerHTML = '<div class="loading">読み込み中…</div>';
+  openModal("modal-detail");
+
+  if (!c.hd) {
+    body.innerHTML = '<div class="error">この端末では本文データを取得できませんでした。「gamewith.jp で開く」から元ページをご覧ください。</div>';
+    return;
+  }
+
+  try {
+    const res = await fetch(`details/${c.id}.html`, { cache: "no-cache" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const html = await res.text();
+    body.innerHTML = html;
+    body.scrollTop = 0;
+  } catch (err) {
+    body.innerHTML = `<div class="error">本文を読み込めませんでした (${err.message}).<br>
+      file:// から開いている場合はブラウザのfetch制限で本文取得不可です。<br>
+      ホスティング (例: GitHub Pages) で開くか、「gamewith.jp で開く」をご利用ください。</div>`;
+  }
+}
 
 document.getElementById("search").addEventListener("input", render);
 document.getElementById("filter-category").addEventListener("change", render);
@@ -743,21 +1053,43 @@ def main():
     for m in merged.values():
         m["categories"].sort(key=lambda x: cat_order.get(x, 99))
 
-    # HTMLに埋め込む軽量版データ
-    slim = [{
-        "id": c["id"], "n": c["name"], "sn": c["short_name"],
-        "i": c["icon"], "u": c["url"], "r": c["role"],
-        "pp": c["pre_post"], "t": c["trainings"], "ty": c["types"],
-        "k": c.get("kindokus", []), "e": c.get("eval_text", ""),
-        "cs": c["categories"],
-    } for c in merged.values()]
+    # 個別ページ情報 (vote_id, has_detail) と スコア (score, count) を取得
+    print("\n=== 個別ページ取得 & スコア取得 ===")
+    skip_details = "--no-details" in sys.argv
+    if skip_details:
+        print("  --no-details: 個別ページ取得をスキップ (スコアのみ更新)")
+        details_idx = load_details_index()
+        scores = {}
+        for c in merged.values():
+            vid = (details_idx.get(c["id"]) or {}).get("vote_id")
+            if vid:
+                scores[c["id"]] = fetch_score(vid)
+                time.sleep(0.12)
+    else:
+        details_idx, scores = fetch_all_details_and_scores(list(merged.values()))
+
+    # HTMLに埋め込む軽量版データ (score / has_detail を含む)
+    slim = []
+    for c in merged.values():
+        det = details_idx.get(c["id"], {}) or {}
+        sc = scores.get(c["id"], {}) or {}
+        slim.append({
+            "id": c["id"], "n": c["name"], "sn": c["short_name"],
+            "i": c["icon"], "u": c["url"], "r": c["role"],
+            "pp": c["pre_post"], "t": c["trainings"], "ty": c["types"],
+            "k": c.get("kindokus", []), "e": c.get("eval_text", ""),
+            "cs": c["categories"],
+            "sc": sc.get("score", 0.0),
+            "scn": sc.get("count", 0),
+            "hd": bool(det.get("has_detail", False)),
+        })
     data_json = json.dumps(slim, ensure_ascii=False, separators=(",", ":"))
 
     html_out = HTML_TEMPLATE.replace("__DATA__", data_json)
-    (BASE / "pawapuro_db.html").write_text(html_out, encoding="utf-8")
+    (BASE / "index.html").write_text(html_out, encoding="utf-8")
 
     unique = len({c["id"] for c in all_chars})
-    print(f"\nDONE: {len(all_chars)} rows / {unique} unique characters -> pawapuro_db.html")
+    print(f"\nDONE: {len(all_chars)} rows / {unique} unique characters -> index.html")
 
 
 if __name__ == "__main__":

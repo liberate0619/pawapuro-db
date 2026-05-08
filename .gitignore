@@ -9,3 +9,7 @@ _*.js
 # OS生成ファイル
 .DS_Store
 Thumbs.db
+
+# Python キャッシュ
+__pycache__/
+*.pyc
