@@ -13,3 +13,19 @@ Thumbs.db
 # Python キャッシュ
 __pycache__/
 *.pyc
+
+# =======================================================
+# Secrets — NEVER commit
+# =======================================================
+.env
+.env.*
+!.env.example
+.global_credentials/
+_機密情報.md
+secrets.*
+credentials.*
+*.pem
+*.key
+*.p12
+*.pfx
+service-account*.json
