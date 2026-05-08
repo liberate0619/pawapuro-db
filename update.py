@@ -20,7 +20,11 @@ BASE = Path(__file__).parent
 
 DETAILS_DIR = BASE / "details"
 DETAILS_INDEX = DETAILS_DIR / "index.json"
+SCORES_FILE = DETAILS_DIR / "scores.json"
 GAMEWITH_GAME_ID = "112"  # パワプロアプリの gamewith ID
+
+# 全件スコアリフレッシュの最小間隔 (秒)。これより新しい場合は新キャラ分だけ取得する。
+SCORES_REFRESH_INTERVAL = 25 * 24 * 3600  # 約25日 (≒月1回)
 
 # 各ページの「キャラ一覧」見出しを示すパターン (h2 内のテキストを正規表現でゆるくマッチ)
 PAGES = {
@@ -217,38 +221,103 @@ def fetch_score(vote_id: str) -> dict:
         return {"score": 0.0, "count": 0}
 
 
-def fetch_all_details_and_scores(chars: list[dict]) -> tuple[dict, dict]:
-    """キャラリスト全体について、新規キャラの詳細取得と全キャラのスコア取得を行う。
+def load_scores() -> dict:
+    """前回保存したスコアを読み込む。なければ空dict。"""
+    if SCORES_FILE.exists():
+        try:
+            data = json.loads(SCORES_FILE.read_text(encoding="utf-8"))
+            return data.get("scores", {}) if isinstance(data, dict) else {}
+        except Exception:
+            pass
+    return {}
+
+
+def scores_age_seconds() -> float:
+    """前回スコア更新からの経過秒数。ファイルが無い場合は無限大。"""
+    if not SCORES_FILE.exists():
+        return float("inf")
+    try:
+        data = json.loads(SCORES_FILE.read_text(encoding="utf-8"))
+        if isinstance(data, dict) and "updated_at" in data:
+            return time.time() - float(data["updated_at"])
+    except Exception:
+        pass
+    return float("inf")
+
+
+def save_scores(scores: dict, mark_as_full_refresh: bool = False) -> None:
+    """スコアをJSONに保存する。
+
+    `mark_as_full_refresh=True` の場合のみ updated_at を更新。
+    差分更新時 (新キャラのみ追加) はタイムスタンプを保持する (= 月次タイマーをリセットしない)。
+    """
+    DETAILS_DIR.mkdir(exist_ok=True)
+    updated_at = time.time()
+    if not mark_as_full_refresh and SCORES_FILE.exists():
+        try:
+            old = json.loads(SCORES_FILE.read_text(encoding="utf-8"))
+            if isinstance(old, dict) and "updated_at" in old:
+                updated_at = float(old["updated_at"])
+        except Exception:
+            pass
+    SCORES_FILE.write_text(
+        json.dumps({"updated_at": updated_at, "scores": scores},
+                   ensure_ascii=False, indent=2, sort_keys=True),
+        encoding="utf-8",
+    )
+
+
+def fetch_all_details_and_scores(chars: list[dict], force_full_scores: bool = False) -> tuple[dict, dict]:
+    """新規キャラの詳細取得 + スコア取得 (全件 or 新規分のみ)。
 
     Returns: (details_idx, scores_dict)
     """
     idx = load_details_index()
-    scores: dict[str, dict] = {}
+    cached_scores = load_scores()
+    age_days = scores_age_seconds() / 86400
+    do_full_scores = force_full_scores or scores_age_seconds() > SCORES_REFRESH_INTERVAL
+    if do_full_scores:
+        print(f"  全スコアリフレッシュモード (前回更新: {age_days:.1f}日前 or 強制)")
+    else:
+        print(f"  差分スコア更新モード (前回更新: {age_days:.1f}日前 / 新規キャラのみ取得)")
 
-    new_count = 0
-    score_ok = 0
+    new_detail_count = 0
+    refreshed_score_count = 0
+    scores: dict[str, dict] = dict(cached_scores)  # 既存をベースに、必要分だけ上書き
+
     for i, c in enumerate(chars):
         cid = c["id"]
-        # 詳細(vote_id付き)が未取得 or HTMLファイルが消えている場合のみ再取得
+        # ----- 詳細(個別ページ)取得 (常にキャッシュ優先, 新キャラ or HTMLファイル欠損時のみ) -----
         info = idx.get(cid)
         html_path = DETAILS_DIR / f"{cid}.html"
-        if not info or not info.get("vote_id") or not html_path.exists():
+        is_new_char = not info or not info.get("vote_id") or not html_path.exists()
+        if is_new_char:
             print(f"  [{i+1:3d}/{len(chars)}] detail取得: {cid} {c['name']}")
             info = fetch_char_detail(cid, c["url"])
             idx[cid] = info
-            new_count += 1
+            new_detail_count += 1
             time.sleep(0.4)  # 礼儀
 
         vote_id = info.get("vote_id") if info else ""
-        if vote_id:
-            sc = fetch_score(vote_id)
-            scores[cid] = sc
-            if sc["count"] > 0:
-                score_ok += 1
+        if not vote_id:
+            continue
+
+        # ----- スコア取得 -----
+        # 全件モード or 新規キャラ or キャッシュ未保有 → 取得
+        need_score_fetch = do_full_scores or is_new_char or cid not in cached_scores
+        if need_score_fetch:
+            scores[cid] = fetch_score(vote_id)
+            refreshed_score_count += 1
             time.sleep(0.12)
 
     save_details_index(idx)
-    print(f"  新規詳細: {new_count} 件 / スコア取得: {len(scores)} 件 (うち投票あり {score_ok} 件)")
+    # スコアファイルが更新されたとき(全件 or 新規追加)のみ保存。タイムスタンプは
+    # 全件リフレッシュ時のみ更新 (= 次の月次タイマー基準にする)
+    if refreshed_score_count > 0 or not SCORES_FILE.exists():
+        save_scores(scores, mark_as_full_refresh=do_full_scores)
+    score_ok = sum(1 for s in scores.values() if s.get("count", 0) > 0)
+    print(f"  新規詳細: {new_detail_count} 件 / スコア更新: {refreshed_score_count} 件 / "
+          f"スコア合計 {len(scores)} 件 (うち投票あり {score_ok})")
     return idx, scores
 
 
@@ -1055,18 +1124,10 @@ def main():
 
     # 個別ページ情報 (vote_id, has_detail) と スコア (score, count) を取得
     print("\n=== 個別ページ取得 & スコア取得 ===")
-    skip_details = "--no-details" in sys.argv
-    if skip_details:
-        print("  --no-details: 個別ページ取得をスキップ (スコアのみ更新)")
-        details_idx = load_details_index()
-        scores = {}
-        for c in merged.values():
-            vid = (details_idx.get(c["id"]) or {}).get("vote_id")
-            if vid:
-                scores[c["id"]] = fetch_score(vid)
-                time.sleep(0.12)
-    else:
-        details_idx, scores = fetch_all_details_and_scores(list(merged.values()))
+    force_full_scores = "--refresh-scores" in sys.argv
+    details_idx, scores = fetch_all_details_and_scores(
+        list(merged.values()), force_full_scores=force_full_scores
+    )
 
     # HTMLに埋め込む軽量版データ (score / has_detail を含む)
     slim = []
