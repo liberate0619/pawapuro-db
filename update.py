@@ -145,7 +145,7 @@ DETAIL_END_RE = re.compile(
 
 
 def extract_main_content(html: str) -> str:
-    """個別キャラページのHTMLから本文部分のみ抽出 (広告・スクリプト等を除去)。"""
+    """個別キャラページのHTMLから本文部分のみ抽出 (広告・スクリプト等を除去 → 並び替え)。"""
     m = ARTICLE_BODY_RE.search(html)
     if not m:
         return ""
@@ -163,7 +163,86 @@ def extract_main_content(html: str) -> str:
                   "", body, flags=re.DOTALL | re.IGNORECASE)
     # 内部リンクは新しいタブで開かせる (元サイト側ページに飛ぶため)
     body = re.sub(r"<a\s+", '<a target="_blank" rel="noopener" ', body)
-    return body.strip()
+    return reorganize_content(body.strip())
+
+
+# 表示順 (id 単位)。リストにないIDは末尾に元順で残す。
+SECTION_ORDER = [
+    "pwpr_event",          # イベント一覧 (最上部)
+    "pwpr_basic_info",     # 基本情報 (イベント行は上に抜き出した後の残り)
+    "pwpr_e_bonus",        # イベキャラボーナステーブル
+    "pwpr_combo",          # コンボ
+    "pwpr_evaluate",       # 評価
+    "pwpr_scenariomatch",  # シナリオ適正
+    "pwpr_state",          # ステータス
+]
+
+
+def reorganize_content(body: str) -> str:
+    """目次・導入を削除し、イベント関連を最上部に並び替える。
+
+    - 最初の <h2> より前 (sub-info / 目次 / コラボグリッド) は丸ごと削除
+    - 基本情報内の「イベント」行を抜き出して最上部に移動
+    - その後 SECTION_ORDER の順にセクションを並び替え
+    """
+    m = re.search(r"<h2\b[^>]*>", body)
+    if not m:
+        return body
+    body = body[m.start():]
+
+    # h2 単位でセクション分割
+    h2_iter = list(re.finditer(r"<h2\b([^>]*)>", body))
+    sections: list[tuple[str, str]] = []  # (id, html)
+    for i, hm in enumerate(h2_iter):
+        sec_start = hm.start()
+        sec_end = h2_iter[i + 1].start() if i + 1 < len(h2_iter) else len(body)
+        id_m = re.search(r'id="([^"]+)"', hm.group(1) or "")
+        sec_id = id_m.group(1) if id_m else ""
+        sections.append((sec_id, body[sec_start:sec_end]))
+
+    # 基本情報セクションから「イベント」行を抽出 (上部に出すため)
+    event_row_html = ""
+    new_sections: list[tuple[str, str]] = []
+    for sid, sec in sections:
+        if sid == "pwpr_basic_info":
+            row_m = re.search(
+                r"<tr>\s*<th[^>]*>\s*イベント\s*</th>\s*<td[^>]*>(.*?)</td>\s*</tr>",
+                sec, re.DOTALL,
+            )
+            if row_m:
+                event_row_html = (
+                    '<div class="pwpr_status_table"><table>'
+                    '<tr><th>イベント</th><td>' + row_m.group(1) + '</td></tr>'
+                    '</table></div>'
+                )
+                sec = sec[:row_m.start()] + sec[row_m.end():]
+        new_sections.append((sid, sec))
+    sections = new_sections
+
+    by_id: dict[str, str] = {sid: sec for sid, sec in sections if sid}
+
+    # 並び替え出力
+    parts: list[str] = []
+    if event_row_html:
+        parts.append('<h3 style="margin-top:0;">イベント</h3>' + event_row_html)
+
+    used_ids: set[str] = set()
+    for sid in SECTION_ORDER:
+        if sid in by_id:
+            parts.append(by_id[sid])
+            used_ids.add(sid)
+
+    # SECTION_ORDER に無いセクション (将来追加された h2 など) は元順で末尾へ
+    for sid, sec in sections:
+        if sid and sid in used_ids:
+            continue
+        if not sid:
+            parts.append(sec)
+        else:
+            parts.append(sec)
+            used_ids.add(sid)
+
+    return "\n".join(parts).strip()
 
 
 def load_details_index() -> dict:
