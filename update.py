@@ -179,16 +179,20 @@ SECTION_ORDER = [
 
 
 def reorganize_content(body: str) -> str:
-    """目次・導入を削除し、イベント関連を最上部に並び替える。
-
-    - 最初の <h2> より前 (sub-info / 目次 / コラボグリッド) は丸ごと削除
-    - 基本情報内の「イベント」行を抜き出して最上部に移動
-    - その後 SECTION_ORDER の順にセクションを並び替え
-    """
+    """目次・導入・冗長要素を削除し、イベント一覧を最上部に並び替える。"""
     m = re.search(r"<h2\b[^>]*>", body)
     if not m:
         return body
     body = body[m.start():]
+
+    # 全ページ共通の冗長要素を除去
+    # (a) 基本情報h2の直後に同じ文言のh3 (例: <h2>キャラ名の基本情報</h2><h3>キャラ名の基本情報</h3>)
+    body = re.sub(
+        r"(<h2[^>]*>([^<]+)</h2>)\s*<h3[^>]*>\2</h3>",
+        r"\1", body,
+    )
+    # (b) 投票ウィジェット除去後に残った空の <h3>みんなの評価(総合評価点)</h3>
+    body = re.sub(r"<h3[^>]*>\s*みんなの評価[^<]*</h3>\s*", "", body)
 
     # h2 単位でセクション分割
     h2_iter = list(re.finditer(r"<h2\b([^>]*)>", body))
@@ -200,32 +204,10 @@ def reorganize_content(body: str) -> str:
         sec_id = id_m.group(1) if id_m else ""
         sections.append((sec_id, body[sec_start:sec_end]))
 
-    # 基本情報セクションから「イベント」行を抽出 (上部に出すため)
-    event_row_html = ""
-    new_sections: list[tuple[str, str]] = []
-    for sid, sec in sections:
-        if sid == "pwpr_basic_info":
-            row_m = re.search(
-                r"<tr>\s*<th[^>]*>\s*イベント\s*</th>\s*<td[^>]*>(.*?)</td>\s*</tr>",
-                sec, re.DOTALL,
-            )
-            if row_m:
-                event_row_html = (
-                    '<div class="pwpr_status_table"><table>'
-                    '<tr><th>イベント</th><td>' + row_m.group(1) + '</td></tr>'
-                    '</table></div>'
-                )
-                sec = sec[:row_m.start()] + sec[row_m.end():]
-        new_sections.append((sid, sec))
-    sections = new_sections
-
     by_id: dict[str, str] = {sid: sec for sid, sec in sections if sid}
 
-    # 並び替え出力
+    # SECTION_ORDER の順にセクションを並べる
     parts: list[str] = []
-    if event_row_html:
-        parts.append('<h3 style="margin-top:0;">イベント</h3>' + event_row_html)
-
     used_ids: set[str] = set()
     for sid in SECTION_ORDER:
         if sid in by_id:
@@ -234,12 +216,10 @@ def reorganize_content(body: str) -> str:
 
     # SECTION_ORDER に無いセクション (将来追加された h2 など) は元順で末尾へ
     for sid, sec in sections:
-        if sid and sid in used_ids:
+        if sid in used_ids:
             continue
-        if not sid:
-            parts.append(sec)
-        else:
-            parts.append(sec)
+        parts.append(sec)
+        if sid:
             used_ids.add(sid)
 
     return "\n".join(parts).strip()
