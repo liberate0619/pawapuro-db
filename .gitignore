@@ -10,6 +10,9 @@ _*.js
 .DS_Store
 Thumbs.db
 
+# Claude Code のローカル設定 (個人の権限設定など)
+.claude/settings.local.json
+
 # Python キャッシュ
 __pycache__/
 *.pyc
