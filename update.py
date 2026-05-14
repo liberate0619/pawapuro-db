@@ -21,6 +21,7 @@ BASE = Path(__file__).parent
 DETAILS_DIR = BASE / "details"
 DETAILS_INDEX = DETAILS_DIR / "index.json"
 SCORES_FILE = DETAILS_DIR / "scores.json"
+IMAGES_DIR = BASE / "images"
 GAMEWITH_GAME_ID = "112"  # パワプロアプリの gamewith ID
 
 # 全件スコアリフレッシュの最小間隔 (秒)。これより新しい場合は新キャラ分だけ取得する。
@@ -40,6 +41,46 @@ def download(url: str) -> str:
     req = urllib.request.Request(url, headers={"User-Agent": UA})
     with urllib.request.urlopen(req, timeout=30) as r:
         return r.read().decode("utf-8", errors="replace")
+
+
+# -- アイコン画像のローカル取り込み -------------------------------
+# gamewith 側 CDN が 2026/05 以降ホットリンクを拒否 (HTTP 403 host_not_allowed)
+# するようになったため、img.gamewith.jp の URL は characters.json / index.html
+# にそのまま埋め込まず、リポジトリ内 images/ に保存して相対パスで配信する。
+
+ICON_REFERER = "https://xn--odkm0eg.gamewith.jp/article/show/10371"
+
+
+def download_icon(url: str, char_id: str, rarity: str) -> str:
+    """gamewith のアイコン画像をローカルに保存し、相対パスを返す。
+
+    既にローカルに存在する場合はダウンロードをスキップする。
+    URL/ID/レアリティが不明な場合や、ダウンロードに失敗した場合は
+    元の URL をそのまま返す (ベストエフォート: 画像はリンク切れになるが
+    アプリ自体は動作する)。
+    """
+    if not url or not char_id or not rarity:
+        return url
+    IMAGES_DIR.mkdir(parents=True, exist_ok=True)
+    rel_path = f"images/{char_id}_{rarity}.png"
+    local_path = BASE / rel_path
+    if local_path.exists() and local_path.stat().st_size > 0:
+        return rel_path
+    try:
+        req = urllib.request.Request(url, headers={
+            "User-Agent": UA,
+            "Referer": ICON_REFERER,
+            "Accept": "image/png,image/*;q=0.8,*/*;q=0.5",
+        })
+        with urllib.request.urlopen(req, timeout=30) as r:
+            data = r.read()
+        if not data:
+            raise RuntimeError("empty body")
+        local_path.write_bytes(data)
+        return rel_path
+    except Exception as e:
+        print(f"  ! icon DL失敗 {char_id}_{rarity}: {e}")
+        return url
 
 
 # -- パース処理 ---------------------------------------------------
@@ -1209,6 +1250,21 @@ def main():
             seen.add(key)
             all_chars.append(r)
         print(f"  -> {len(rows)} rows")
+
+    # アイコン画像をローカルへ取り込み、icon フィールドを相対パスに置換
+    # (gamewith CDN のホットリンク禁止対策。同一IDが複数行に出てもキャッシュが
+    # 効くので追加コストはほぼ無い)
+    print("\n=== アイコン画像取り込み ===")
+    icon_map: dict[tuple[str, str], str] = {}
+    for c in all_chars:
+        key = (c["id"], c["rarity"])
+        if key in icon_map:
+            c["icon"] = icon_map[key]
+            continue
+        new_icon = download_icon(c["icon"], c["id"], c["rarity"])
+        icon_map[key] = new_icon
+        c["icon"] = new_icon
+    print(f"  -> {len(icon_map)} icons checked")
 
     # JSONを書き出し
     (BASE / "characters.json").write_text(
