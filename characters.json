@@ -1,5 +1,27 @@
 [
   {
+    "id": "563878",
+    "rarity": "SR",
+    "name": "[満開ステップ]ゼルヴィー",
+    "short_name": "[満]ゼルヴィー",
+    "icon": "images/563878_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/563878",
+    "role": "スナイパー",
+    "pre_post": "後イベ",
+    "trainings": [
+      "メンタル",
+      "コントロール"
+    ],
+    "types": [
+      "投手"
+    ],
+    "kindokus": [
+      "ストーンウォールクロスキャノン+泰然自若"
+    ],
+    "eval_text": "S恵比留強化2回目投手",
+    "category": "pitcher"
+  },
+  {
     "id": "557945",
     "rarity": "SR",
     "name": "シャルル・ジ・ブリタニア",
@@ -16811,6 +16833,25 @@
     ],
     "eval_text": "なし",
     "category": "batter"
+  },
+  {
+    "id": "563879",
+    "rarity": "SR",
+    "name": "大家まどか",
+    "short_name": "まどか",
+    "icon": "images/563879_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/563879",
+    "role": "ガード",
+    "pre_post": "前イベ",
+    "trainings": [],
+    "types": [
+      "相棒"
+    ],
+    "kindokus": [
+      "ヒートアップ+昇り龍スイープ+昇り龍完全燃焼+ハイスピンジャイロ怪童+ハイスピンジャイロ"
+    ],
+    "eval_text": "B+アンドロメダ強化野手",
+    "category": "gf"
   },
   {
     "id": "560634",
