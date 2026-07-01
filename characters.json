@@ -1,5 +1,27 @@
 [
   {
+    "id": "565383",
+    "rarity": "SR",
+    "name": "[超攻型]大西",
+    "short_name": "[超]大西",
+    "icon": "images/565383_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/565383",
+    "role": "バウンサー",
+    "pre_post": "後イベ",
+    "trainings": [
+      "スタミナ",
+      "球速"
+    ],
+    "types": [
+      "投手"
+    ],
+    "kindokus": [
+      "安打製造機怪物球威+左キラー(投手)ハイスピンジャイロ"
+    ],
+    "eval_text": "S恵比留強化2回目投手",
+    "category": "pitcher"
+  },
+  {
     "id": "563878",
     "rarity": "SR",
     "name": "[満開ステップ]ゼルヴィー",
