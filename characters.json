@@ -1,5 +1,27 @@
 [
   {
+    "id": "569024",
+    "rarity": "SR",
+    "name": "[水着]泡瀬満里南",
+    "short_name": "[水]泡瀬",
+    "icon": "images/569024_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/569024",
+    "role": "バウンサー",
+    "pre_post": "前イベ",
+    "trainings": [
+      "メンタル",
+      "スタミナ"
+    ],
+    "types": [
+      "投手"
+    ],
+    "kindokus": [
+      "看破フローターパール+スクランブル先手必奪+スクランブル"
+    ],
+    "eval_text": "S恵比留強化2回目投手",
+    "category": "pitcher"
+  },
+  {
     "id": "565383",
     "rarity": "SR",
     "name": "[超攻型]大西",
