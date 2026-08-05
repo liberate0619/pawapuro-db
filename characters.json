@@ -1,5 +1,70 @@
 [
   {
+    "id": "570609",
+    "rarity": "SR",
+    "name": "初白百合",
+    "short_name": "初白",
+    "icon": "images/570609_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/570609",
+    "role": "バウンサー",
+    "pre_post": "前イベ",
+    "trainings": [
+      "走塁",
+      "コントロール"
+    ],
+    "types": [
+      "野手",
+      "投手"
+    ],
+    "kindokus": [
+      "看破+明鏡止水ジャストフィット+走者釘付"
+    ],
+    "eval_text": "Sロマン開花投手",
+    "category": "pitcher"
+  },
+  {
+    "id": "570607",
+    "rarity": "SR",
+    "name": "朝顔かえで",
+    "short_name": "朝顔",
+    "icon": "images/570607_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/570607",
+    "role": "レンジャー",
+    "pre_post": "前イベ",
+    "trainings": [
+      "変化球"
+    ],
+    "types": [
+      "投手"
+    ],
+    "kindokus": [
+      "一球入魂ドクターK+ディレイドアーム"
+    ],
+    "eval_text": "Sロマン開花投手",
+    "category": "pitcher"
+  },
+  {
+    "id": "570605",
+    "rarity": "SR",
+    "name": "大桜剛",
+    "short_name": "大桜",
+    "icon": "images/570605_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/570605",
+    "role": "ガード",
+    "pre_post": "後イベ",
+    "trainings": [
+      "球速"
+    ],
+    "types": [
+      "投手"
+    ],
+    "kindokus": [
+      "洗礼の一撃ハイスピンジャイロ+速球プライド"
+    ],
+    "eval_text": "Sロマン開花投手",
+    "category": "pitcher"
+  },
+  {
     "id": "569024",
     "rarity": "SR",
     "name": "[水着]泡瀬満里南",
@@ -18,7 +83,7 @@
     "kindokus": [
       "看破フローターパール+スクランブル先手必奪+スクランブル"
     ],
-    "eval_text": "S恵比留強化2回目投手",
+    "eval_text": "Sロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -40,7 +105,7 @@
     "kindokus": [
       "安打製造機怪物球威+左キラー(投手)ハイスピンジャイロ"
     ],
-    "eval_text": "S恵比留強化2回目投手",
+    "eval_text": "Sロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -62,7 +127,7 @@
     "kindokus": [
       "ストーンウォールクロスキャノン+泰然自若"
     ],
-    "eval_text": "S恵比留強化2回目投手",
+    "eval_text": "Sロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -85,7 +150,7 @@
     "kindokus": [
       "大打撃+重戦車逆襲怪童+マインドブレイカー闘魂"
     ],
-    "eval_text": "A恵比留強化2回目投手A赤壁野手B+アンドロメダ強化野手",
+    "eval_text": "B+ロマン開花投手B+アンドロメダ強化野手",
     "category": "pitcher"
   },
   {
@@ -108,7 +173,7 @@
     "kindokus": [
       "至高の二塁手+火事場の馬鹿力走力バースト+電光石火鉄人(野手)勝利の星+鉄人(投手)"
     ],
-    "eval_text": "S赤壁野手Sアンドロメダ強化野手",
+    "eval_text": "Sアンドロメダ強化野手",
     "category": "pitcher"
   },
   {
@@ -130,7 +195,7 @@
     "kindokus": [
       "カリスマ(野手)威圧感(投手)+王の力威圧感(投手)+完全制圧ミスターゼロ"
     ],
-    "eval_text": "S恵比留強化2回目投手",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -152,7 +217,7 @@
     "kindokus": [
       "逆襲変幻自在+闘魂ギアチェンジ"
     ],
-    "eval_text": "S恵比留強化2回目投手",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -174,7 +239,7 @@
     "kindokus": [
       "エースキラー精密機械+ハイスピンジャイロ復活"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -196,7 +261,7 @@
     "kindokus": [
       "一球入魂トップギア+意気揚々エースの風格"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -219,7 +284,7 @@
     "kindokus": [
       "アーチスト+切り込み隊長ホームランフィーバー復活+二刀流ドクターK"
     ],
-    "eval_text": "S恵比留強化2回目投手A赤壁野手Aアンドロメダ強化野手",
+    "eval_text": "Aロマン開花投手Aアンドロメダ強化野手",
     "category": "pitcher"
   },
   {
@@ -243,7 +308,7 @@
     "kindokus": [
       "一球入魂+カリスマ(野手)アンプレシオン+カリスマ(投手)カモフラージュ+カリスマ(投手)"
     ],
-    "eval_text": "S恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -265,7 +330,7 @@
     "kindokus": [
       "祝福超尻上がり+形勢逆転"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -288,7 +353,7 @@
     "kindokus": [
       "ヒートアップ+代打の神様勇猛果敢+本塁打厳禁"
     ],
-    "eval_text": "S恵比留強化2回目投手B+赤壁野手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -311,7 +376,7 @@
     "kindokus": [
       "高球必打+ストーンウォール切り込み隊長精密機械+一徹本塁打厳禁"
     ],
-    "eval_text": "A恵比留強化2回目投手A赤壁野手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -333,7 +398,7 @@
     "kindokus": [
       "電光石火金縛り+走者釘付カモフラージュ"
     ],
-    "eval_text": "S恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -356,7 +421,7 @@
     "kindokus": [
       "切磋琢磨+一番槍驚異の切れ味+完全燃焼"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -378,7 +443,7 @@
     "kindokus": [
       "ストレートキラー一球入魂至高のスターター+危地脱出ライジング・ノヴァ+危地脱出マインドブレイカー+危地脱出"
     ],
-    "eval_text": "S恵比留強化2回目投手",
+    "eval_text": "Aロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -401,7 +466,7 @@
     "kindokus": [
       "左キラー(野手)+恐怖の満塁男気迫ヘッド+恐怖の満塁男大打撃怪童+内無双ハイスピンジャイロ+内無双先手必奪"
     ],
-    "eval_text": "S赤壁野手B+恵比留強化2回目投手B+アンドロメダ強化野手",
+    "eval_text": "B+アンドロメダ強化野手",
     "category": "pitcher"
   },
   {
@@ -424,7 +489,7 @@
     "kindokus": [
       "メッタ打ち+ハゲタカマインドブレイカー+驚異の切れ味"
     ],
-    "eval_text": "S赤壁野手",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -447,7 +512,7 @@
     "kindokus": [
       "逆襲+切磋琢磨復活+一徹"
     ],
-    "eval_text": "A赤壁野手B+恵比留強化2回目投手B+アンドロメダ強化野手",
+    "eval_text": "B+アンドロメダ強化野手",
     "category": "pitcher"
   },
   {
@@ -470,7 +535,7 @@
     "kindokus": [
       "トリックスター+エースキラーブリッツ変幻自在+鉄仮面勝利の星"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -491,7 +556,7 @@
     "kindokus": [
       "ストライク送球至高のクローザージャストフィット+ディレイドアームエースの風格"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "Aロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -514,7 +579,7 @@
     "kindokus": [
       "至高の外野手+安打製造機ストライク送球+安打製造機マインドブレイカー+変幻自在"
     ],
-    "eval_text": "A赤壁野手B+アンドロメダ強化野手",
+    "eval_text": "Aロマン開花投手B+アンドロメダ強化野手",
     "category": "pitcher"
   },
   {
@@ -535,7 +600,7 @@
     "kindokus": [
       "大打撃アームブレイカー+鉄腕怪物球威"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -558,7 +623,7 @@
     "kindokus": [
       "渾身の決勝打+超ラッキーボーイブリッツ勝利の星+必殺火消し人一徹"
     ],
-    "eval_text": "B+赤壁野手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -581,7 +646,7 @@
     "kindokus": [
       "勝負師+精神的支柱火事場の馬鹿力ギアチェンジ+みなぎる活力強心臓"
     ],
-    "eval_text": "A恵比留強化2回目投手Aアンドロメダ強化野手",
+    "eval_text": "Aアンドロメダ強化野手",
     "category": "pitcher"
   },
   {
@@ -626,7 +691,7 @@
     "kindokus": [
       "魔術師孤軍奮闘ともボール+不屈の魂ド根性+不屈の魂マインドブレイカー"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "Sロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -648,7 +713,7 @@
     "kindokus": [
       "切磋琢磨ドクターK+エースの風格ギアチェンジ"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -669,7 +734,7 @@
     "kindokus": [
       "ストライク送球クロスキャノン+先手必奪"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -692,7 +757,7 @@
     "kindokus": [
       "スイープ+ストーンウォール精密機械+本塁打厳禁"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -737,7 +802,7 @@
     "kindokus": [
       "昇り龍+ヒートアップメッタ打ち意気揚々+超尻上がりミスターゼロ"
     ],
-    "eval_text": "B+恵比留強化2回目投手B+赤壁野手B+アンドロメダ強化野手",
+    "eval_text": "B+アンドロメダ強化野手",
     "category": "pitcher"
   },
   {
@@ -760,7 +825,7 @@
     "kindokus": [
       "心眼+明鏡止水勇猛果敢+エースの風格"
     ],
-    "eval_text": "A赤壁野手Aアンドロメダ強化野手B+恵比留強化2回目投手",
+    "eval_text": "Aロマン開花投手Aアンドロメダ強化野手",
     "category": "pitcher"
   },
   {
@@ -804,7 +869,7 @@
     "kindokus": [
       "メッタ打ち+ストーンウォールストレートキラー超尻上がり+鉄仮面マインドブレイカー"
     ],
-    "eval_text": "なし",
+    "eval_text": "Aロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -849,7 +914,7 @@
     "kindokus": [
       "至高の外野手+高速レーザー大打撃+高速レーザー精密機械+ハイスピンジャイロ"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -894,7 +959,7 @@
     "kindokus": [
       "電光石火+スイープ芸術的流し打ちスイーパー+強心臓怪童+二刀流完全制圧"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -938,7 +1003,7 @@
     "kindokus": [
       "渾身の決勝打+一球入魂至高のリリーバード根性+完全燃焼"
     ],
-    "eval_text": "B+赤壁野手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1119,7 +1184,7 @@
     "kindokus": [
       "電光石火+ブリッツ速球プライド+暴れ球"
     ],
-    "eval_text": "B+赤壁野手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1141,7 +1206,7 @@
     "kindokus": [
       "勝負師精密機械+カモフラージュ"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1163,7 +1228,7 @@
     "kindokus": [
       "金剛気迫ヘッド強心臓+内無双ド根性"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1185,7 +1250,7 @@
     "kindokus": [
       "大番狂わせ精神的支柱ココロブレイク+カリスマ(投手)勝利の星+完全燃焼"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1253,7 +1318,7 @@
     "kindokus": [
       "伝説のサヨナラ男怪物球威+アームブレイカー本塁打厳禁"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -1274,7 +1339,7 @@
     "kindokus": [
       "ストーンウォールトゥインクルムーン+クロスキャノン意気揚々+クロスキャノン闘魂"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1297,7 +1362,7 @@
     "kindokus": [
       "ヒートアップ+切磋琢磨牛若丸フォトンブレイザー+エースの風格速球プライド+ミスターゼロド根性+完全燃焼"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1343,7 +1408,7 @@
     "kindokus": [
       "ヒートアップ+芸術的流し打ちギアチェンジ+ジャストフィット"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1366,7 +1431,7 @@
     "kindokus": [
       "大番狂わせ+トリックスター火事場の馬鹿力+芸術的流し打ち暴れ球+変化球プライド強心臓+原点投球"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -1389,7 +1454,7 @@
     "kindokus": [
       "代打の神様+読心術トリックスター二刀流+内無双カモフラージュ"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1412,7 +1477,7 @@
     "kindokus": [
       "情熱エール+スイープ超尻上がり+マインドブレイカー"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1521,7 +1586,7 @@
     "kindokus": [
       "電光石火内無双+必殺火消し人"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1564,7 +1629,7 @@
     "kindokus": [
       "ストーンウォール本塁打厳禁+勝利の星小判乱れ撃ち+勝利の星ギアチェンジ"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1585,7 +1650,7 @@
     "kindokus": [
       "ラストエンペラーカモフラージュ+変化球プライド"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -1608,7 +1673,7 @@
     "kindokus": [
       "ブリッツ+一発逆転王内野安打王+一発逆転王火事場の馬鹿力先手必奪+復活走者釘付+復活暴れ球"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "Aロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -1630,7 +1695,7 @@
     "kindokus": [
       "渾身の決勝打ディレイドアーム+形勢逆転必殺火消し人"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -1674,7 +1739,7 @@
     "kindokus": [
       "ストレートキラー魔球アレイアード+金縛り速球プライド+金縛りド根性"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -1697,7 +1762,7 @@
     "kindokus": [
       "看破+気迫ヘッドバズーカ+司令塔バズーカ+司令塔勇猛果敢+闘魂"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1764,7 +1829,7 @@
     "kindokus": [
       "伝説のサヨナラ男必殺火消し人+原点投球変幻自在+エースの風格"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -1787,7 +1852,7 @@
     "kindokus": [
       "ストレートキラー+切り込み隊長ドクターK+ディレイドアーム"
     ],
-    "eval_text": "なし",
+    "eval_text": "Aロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -1854,7 +1919,7 @@
     "kindokus": [
       "魔術師+牛若丸強心臓+走者釘付至高のクローザー"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -1923,7 +1988,7 @@
     "kindokus": [
       "ホームランフィーバー+祝福メッタ打ち闘魂+一徹ミスターゼロ"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1946,7 +2011,7 @@
     "kindokus": [
       "牛若丸+伝説のサヨナラ男牛若丸+昇り龍ホームランボール+伝説のサヨナラ男牛若丸+至高の三塁手ホームランボール+至高の三塁手ギアチェンジみなぎる活力"
     ],
-    "eval_text": "A赤壁野手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1969,7 +2034,7 @@
     "kindokus": [
       "金剛+切磋琢磨不屈の魂+エースの風格"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -1992,7 +2057,7 @@
     "kindokus": [
       "トリックスター+大番狂わせマインドブレイカー+変幻自在"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -2036,7 +2101,7 @@
     "kindokus": [
       "エースキラー+昇り龍強心臓+ミスターゼロ一徹"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -2059,7 +2124,7 @@
     "kindokus": [
       "気迫ヘッド+孤軍奮闘広角砲+祝福高球必打+祝福ド根性+闘魂勝利の星+意気揚々怪童+意気揚々"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -2373,7 +2438,7 @@
     "kindokus": [
       "アーチスト+伝説の引っ張り屋安打製造機+芸術的流し打ち一球入魂至高のスターター驚異の切れ味+変幻自在先手必奪"
     ],
-    "eval_text": "なし",
+    "eval_text": "Aロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -2418,7 +2483,7 @@
     "kindokus": [
       "高速レーザー+広角砲安打製造機イチシーム+ハイスピンジャイロ精密機械+ハイスピンジャイロ一徹"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -2530,7 +2595,7 @@
     "kindokus": [
       "洗礼の一撃雷咆+変化球プライドアームブレイカー+変化球プライド"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -2553,7 +2618,7 @@
     "kindokus": [
       "広角砲+祝福高球必打+祝福勝利の星+意気揚々怪童+意気揚々"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -2645,7 +2710,7 @@
     "kindokus": [
       "恐怖の満塁男+昇り龍至高のクローザーエースの風格"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -2773,7 +2838,7 @@
     "kindokus": [
       "低球必打+一球入魂カモフラージュ+復活"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -2992,7 +3057,7 @@
     "kindokus": [
       "ホームランボールマインドブレイカー+本塁打厳禁"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -3036,7 +3101,7 @@
       "芸術的流し打ち蝶ノ舞",
       "戯れ+変幻自在鉄腕+鉄仮面"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -3174,7 +3239,7 @@
     "kindokus": [
       "挑発+ヒートアップ球界の頭脳+ヒートアップ球界の頭脳+ヒートアップ勇猛果敢+怪物球威"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -3264,7 +3329,7 @@
     "kindokus": [
       "魔術師ランブルフォール+ギアチェンジミスターゼロ+ギアチェンジ"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -6825,6 +6890,29 @@
     "category": "pitcher"
   },
   {
+    "id": "570609",
+    "rarity": "SR",
+    "name": "初白百合",
+    "short_name": "初白",
+    "icon": "images/570609_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/570609",
+    "role": "バウンサー",
+    "pre_post": "前イベ",
+    "trainings": [
+      "走塁",
+      "コントロール"
+    ],
+    "types": [
+      "野手",
+      "投手"
+    ],
+    "kindokus": [
+      "看破+明鏡止水ジャストフィット+走者釘付"
+    ],
+    "eval_text": "Sロマン開花投手",
+    "category": "batter"
+  },
+  {
     "id": "567945",
     "rarity": "SR",
     "name": "パワ子",
@@ -6946,7 +7034,7 @@
     "kindokus": [
       "祝福+勝負師魔術師原点投球"
     ],
-    "eval_text": "S赤壁野手Sアンドロメダ強化野手",
+    "eval_text": "Sアンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -6969,7 +7057,7 @@
     "kindokus": [
       "大打撃+重戦車逆襲怪童+マインドブレイカー闘魂"
     ],
-    "eval_text": "A恵比留強化2回目投手A赤壁野手B+アンドロメダ強化野手",
+    "eval_text": "B+ロマン開花投手B+アンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -6991,7 +7079,7 @@
     "kindokus": [
       "至高の一塁手+一番槍一発逆転王+一番槍メッタ打ち先手必奪"
     ],
-    "eval_text": "S赤壁野手Sアンドロメダ強化野手",
+    "eval_text": "Sアンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7014,7 +7102,7 @@
     "kindokus": [
       "至高の二塁手+火事場の馬鹿力走力バースト+電光石火鉄人(野手)勝利の星+鉄人(投手)"
     ],
-    "eval_text": "S赤壁野手Sアンドロメダ強化野手",
+    "eval_text": "Sアンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7036,7 +7124,7 @@
     "kindokus": [
       "情熱エール+接戦巧者アーチスト闘魂みなぎる活力"
     ],
-    "eval_text": "S赤壁野手Sアンドロメダ強化野手",
+    "eval_text": "Sアンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7059,7 +7147,7 @@
     "kindokus": [
       "アーチスト+切り込み隊長ホームランフィーバー復活+二刀流ドクターK"
     ],
-    "eval_text": "S恵比留強化2回目投手A赤壁野手Aアンドロメダ強化野手",
+    "eval_text": "Aロマン開花投手Aアンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7080,7 +7168,7 @@
     "kindokus": [
       "大番狂わせ+気迫ヘッド意気揚々"
     ],
-    "eval_text": "A赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7104,7 +7192,7 @@
     "kindokus": [
       "一球入魂+カリスマ(野手)アンプレシオン+カリスマ(投手)カモフラージュ+カリスマ(投手)"
     ],
-    "eval_text": "S恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7127,7 +7215,7 @@
     "kindokus": [
       "ヒートアップ+代打の神様勇猛果敢+本塁打厳禁"
     ],
-    "eval_text": "S恵比留強化2回目投手B+赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7149,7 +7237,7 @@
     "kindokus": [
       "芸術的流し打ち+読心術明鏡止水精密機械"
     ],
-    "eval_text": "S赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7170,7 +7258,7 @@
     "kindokus": [
       "至高の三塁手+挑発つるべ打ち+挑発トリックスタージャストフィット"
     ],
-    "eval_text": "A赤壁野手B+アンドロメダ強化野手",
+    "eval_text": "B+アンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7193,7 +7281,7 @@
     "kindokus": [
       "高球必打+ストーンウォール切り込み隊長精密機械+一徹本塁打厳禁"
     ],
-    "eval_text": "A恵比留強化2回目投手A赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7214,7 +7302,7 @@
     "kindokus": [
       "球界の頭脳+司令塔孤軍奮闘+ラストエンペラー電光石火強心臓"
     ],
-    "eval_text": "S赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7237,7 +7325,7 @@
     "kindokus": [
       "切磋琢磨+一番槍驚異の切れ味+完全燃焼"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7258,7 +7346,7 @@
     "kindokus": [
       "ホームランボール+超ラッキーボーイ魔術師ド根性+超尻上がり"
     ],
-    "eval_text": "S赤壁野手Sアンドロメダ強化野手",
+    "eval_text": "Sアンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7279,7 +7367,7 @@
     "kindokus": [
       "球界の頭脳+鉄の壁伝説のサヨナラ男+広角砲火事場の馬鹿力復活"
     ],
-    "eval_text": "A赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7302,7 +7390,7 @@
     "kindokus": [
       "左キラー(野手)+恐怖の満塁男気迫ヘッド+恐怖の満塁男大打撃怪童+内無双ハイスピンジャイロ+内無双先手必奪"
     ],
-    "eval_text": "S赤壁野手B+恵比留強化2回目投手B+アンドロメダ強化野手",
+    "eval_text": "B+アンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7325,7 +7413,7 @@
     "kindokus": [
       "メッタ打ち+ハゲタカマインドブレイカー+驚異の切れ味"
     ],
-    "eval_text": "S赤壁野手",
+    "eval_text": "B+ロマン開花投手",
     "category": "batter"
   },
   {
@@ -7348,7 +7436,7 @@
     "kindokus": [
       "逆襲+切磋琢磨復活+一徹"
     ],
-    "eval_text": "A赤壁野手B+恵比留強化2回目投手B+アンドロメダ強化野手",
+    "eval_text": "B+アンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7369,7 +7457,7 @@
     "kindokus": [
       "金剛+昇り龍不屈の魂"
     ],
-    "eval_text": "A赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7392,7 +7480,7 @@
     "kindokus": [
       "トリックスター+エースキラーブリッツ変幻自在+鉄仮面勝利の星"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7413,7 +7501,7 @@
     "kindokus": [
       "看破+内角必打つるべ打ち勇猛果敢"
     ],
-    "eval_text": "A赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7436,7 +7524,7 @@
     "kindokus": [
       "至高の外野手+安打製造機ストライク送球+安打製造機マインドブレイカー+変幻自在"
     ],
-    "eval_text": "A赤壁野手B+アンドロメダ強化野手",
+    "eval_text": "Aロマン開花投手B+アンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7457,7 +7545,7 @@
     "kindokus": [
       "威圧感(野手)+不動の四番伝説の引っ張り屋威圧感(投手)+エースの風格"
     ],
-    "eval_text": "A赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7479,7 +7567,7 @@
     "kindokus": [
       "至高の遊撃手+牛若丸挑発+牛若丸切り込み隊長マインドブレイカー"
     ],
-    "eval_text": "A赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7502,7 +7590,7 @@
     "kindokus": [
       "渾身の決勝打+超ラッキーボーイブリッツ勝利の星+必殺火消し人一徹"
     ],
-    "eval_text": "B+赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7524,7 +7612,7 @@
     "kindokus": [
       "逆襲+洗礼の一撃気迫ヘッド形勢逆転"
     ],
-    "eval_text": "B+赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7547,7 +7635,7 @@
     "kindokus": [
       "勝負師+精神的支柱火事場の馬鹿力ギアチェンジ+みなぎる活力強心臓"
     ],
-    "eval_text": "A恵比留強化2回目投手Aアンドロメダ強化野手",
+    "eval_text": "Aアンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7592,7 +7680,7 @@
     "kindokus": [
       "情熱エール+祝福金剛闘魂驚異の切れ味"
     ],
-    "eval_text": "S赤壁野手Aアンドロメダ強化野手",
+    "eval_text": "Aアンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7615,7 +7703,7 @@
     "kindokus": [
       "スイープ+ストーンウォール精密機械+本塁打厳禁"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7637,7 +7725,7 @@
     "kindokus": [
       "一球入魂+安打製造機ジャストフィット"
     ],
-    "eval_text": "B+赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7659,7 +7747,7 @@
     "kindokus": [
       "カリスマ(野手)+ホームランフィーバー伝説の引っ張り屋意気揚々"
     ],
-    "eval_text": "A赤壁野手Aアンドロメダ強化野手",
+    "eval_text": "Aアンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7680,7 +7768,7 @@
     "kindokus": [
       "至高の一塁手+高速ベースランブリッツ+高速ベースラン変幻自在"
     ],
-    "eval_text": "B+赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7703,7 +7791,7 @@
     "kindokus": [
       "昇り龍+ヒートアップメッタ打ち意気揚々+超尻上がりミスターゼロ"
     ],
-    "eval_text": "B+恵比留強化2回目投手B+赤壁野手B+アンドロメダ強化野手",
+    "eval_text": "B+アンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7725,7 +7813,7 @@
     "kindokus": [
       "アーチスト+アイコンタクトジャストフィット"
     ],
-    "eval_text": "B+赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7748,7 +7836,7 @@
     "kindokus": [
       "心眼+明鏡止水勇猛果敢+エースの風格"
     ],
-    "eval_text": "A赤壁野手Aアンドロメダ強化野手B+恵比留強化2回目投手",
+    "eval_text": "Aロマン開花投手Aアンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7814,7 +7902,7 @@
     "kindokus": [
       "メッタ打ち+ストーンウォールストレートキラー超尻上がり+鉄仮面マインドブレイカー"
     ],
-    "eval_text": "なし",
+    "eval_text": "Aロマン開花投手",
     "category": "batter"
   },
   {
@@ -7835,7 +7923,7 @@
     "kindokus": [
       "勝負師+広角砲芸術的流し打ち本塁打厳禁"
     ],
-    "eval_text": "A赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7858,7 +7946,7 @@
     "kindokus": [
       "至高の外野手+高速レーザー大打撃+高速レーザー精密機械+ハイスピンジャイロ"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "batter"
   },
   {
@@ -7948,7 +8036,7 @@
     "kindokus": [
       "電光石火+スイープ芸術的流し打ちスイーパー+強心臓怪童+二刀流完全制圧"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -7971,7 +8059,7 @@
     "kindokus": [
       "渾身の決勝打+一球入魂至高のリリーバード根性+完全燃焼"
     ],
-    "eval_text": "B+赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -8306,7 +8394,7 @@
     "kindokus": [
       "電光石火+ブリッツ速球プライド+暴れ球"
     ],
-    "eval_text": "B+赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -8748,7 +8836,7 @@
     "kindokus": [
       "ヒートアップ+切磋琢磨牛若丸フォトンブレイザー+エースの風格速球プライド+ミスターゼロド根性+完全燃焼"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -8815,7 +8903,7 @@
     "kindokus": [
       "ヒートアップ+芸術的流し打ちギアチェンジ+ジャストフィット"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -8838,7 +8926,7 @@
     "kindokus": [
       "大番狂わせ+トリックスター火事場の馬鹿力+芸術的流し打ち暴れ球+変化球プライド強心臓+原点投球"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "batter"
   },
   {
@@ -8861,7 +8949,7 @@
     "kindokus": [
       "代打の神様+読心術トリックスター二刀流+内無双カモフラージュ"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -8884,7 +8972,7 @@
     "kindokus": [
       "情熱エール+スイープ超尻上がり+マインドブレイカー"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -9058,7 +9146,7 @@
     "kindokus": [
       "ブリッツ+一発逆転王内野安打王+一発逆転王火事場の馬鹿力先手必奪+復活走者釘付+復活暴れ球"
     ],
-    "eval_text": "A恵比留強化2回目投手",
+    "eval_text": "Aロマン開花投手",
     "category": "batter"
   },
   {
@@ -9231,7 +9319,7 @@
     "kindokus": [
       "看破+気迫ヘッドバズーカ+司令塔バズーカ+司令塔勇猛果敢+闘魂"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -9431,7 +9519,7 @@
     "kindokus": [
       "ストレートキラー+切り込み隊長ドクターK+ディレイドアーム"
     ],
-    "eval_text": "なし",
+    "eval_text": "Aロマン開花投手",
     "category": "batter"
   },
   {
@@ -9542,7 +9630,7 @@
     "kindokus": [
       "魔術師+牛若丸強心臓+走者釘付至高のクローザー"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "batter"
   },
   {
@@ -9633,7 +9721,7 @@
     "kindokus": [
       "ホームランフィーバー+祝福メッタ打ち闘魂+一徹ミスターゼロ"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -9656,7 +9744,7 @@
     "kindokus": [
       "牛若丸+伝説のサヨナラ男牛若丸+昇り龍ホームランボール+伝説のサヨナラ男牛若丸+至高の三塁手ホームランボール+至高の三塁手ギアチェンジみなぎる活力"
     ],
-    "eval_text": "A赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -9679,7 +9767,7 @@
     "kindokus": [
       "金剛+切磋琢磨不屈の魂+エースの風格"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "batter"
   },
   {
@@ -9702,7 +9790,7 @@
     "kindokus": [
       "トリックスター+大番狂わせマインドブレイカー+変幻自在"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "batter"
   },
   {
@@ -9770,7 +9858,7 @@
     "kindokus": [
       "気迫ヘッド+孤軍奮闘広角砲+祝福高球必打+祝福ド根性+闘魂勝利の星+意気揚々怪童+意気揚々"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -10108,7 +10196,7 @@
     "kindokus": [
       "つるべ打ち+逆襲変幻自在"
     ],
-    "eval_text": "B+赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -10175,7 +10263,7 @@
     "kindokus": [
       "高速レーザー+広角砲安打製造機イチシーム+ハイスピンジャイロ精密機械+ハイスピンジャイロ一徹"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -10376,7 +10464,7 @@
     "kindokus": [
       "洗礼の一撃雷咆+変化球プライドアームブレイカー+変化球プライド"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "batter"
   },
   {
@@ -10421,7 +10509,7 @@
     "kindokus": [
       "広角砲+祝福高球必打+祝福勝利の星+意気揚々怪童+意気揚々"
     ],
-    "eval_text": "B+恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -10532,7 +10620,7 @@
     "kindokus": [
       "走力バースト+一番槍変幻自在"
     ],
-    "eval_text": "B+赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -10689,7 +10777,7 @@
     "kindokus": [
       "恐怖の満塁男+昇り龍至高のクローザーエースの風格"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "batter"
   },
   {
@@ -11206,7 +11294,7 @@
     "kindokus": [
       "心眼+大番狂わせ強心臓"
     ],
-    "eval_text": "B+赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -11409,7 +11497,7 @@
     "kindokus": [
       "挑発+ヒートアップ球界の頭脳+ヒートアップ球界の頭脳+ヒートアップ勇猛果敢+怪物球威"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "batter"
   },
   {
@@ -11454,7 +11542,7 @@
     "kindokus": [
       "一球入魂+内角必打本塁打厳禁"
     ],
-    "eval_text": "B+赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -13317,7 +13405,7 @@
     "kindokus": [
       "火事場の馬鹿力至高の二塁手完全燃焼"
     ],
-    "eval_text": "A赤壁野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -16980,7 +17068,7 @@
     "kindokus": [
       "一球入魂+カリスマ(野手)アンプレシオン+カリスマ(投手)カモフラージュ+カリスマ(投手)"
     ],
-    "eval_text": "S恵比留強化2回目投手",
+    "eval_text": "なし",
     "category": "gf"
   },
   {
