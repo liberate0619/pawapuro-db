@@ -1,5 +1,49 @@
 [
   {
+    "id": "572849",
+    "rarity": "SR",
+    "name": "フォイボス",
+    "short_name": "フォイボス",
+    "icon": "images/572849_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/572849",
+    "role": "レンジャー",
+    "pre_post": "後イベ",
+    "trainings": [
+      "コントロール",
+      "筋力"
+    ],
+    "types": [
+      "投手",
+      "野手"
+    ],
+    "kindokus": [
+      "エースキラー+恐怖の満塁男切磋琢磨カオスハーモニー+ミスターゼロ勇猛果敢+ミスターゼロドクターK"
+    ],
+    "eval_text": "Sロマン開花投手Aアンドロメダ強化野手",
+    "category": "pitcher"
+  },
+  {
+    "id": "572843",
+    "rarity": "SR",
+    "name": "潮来美霊",
+    "short_name": "潮来",
+    "icon": "images/572843_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/572843",
+    "role": "ガード",
+    "pre_post": "前イベ",
+    "trainings": [
+      "球速"
+    ],
+    "types": [
+      "投手"
+    ],
+    "kindokus": [
+      "読心術魂のまっすぐ+怪童鎮圧+怪童完全燃焼"
+    ],
+    "eval_text": "Sロマン開花投手",
+    "category": "pitcher"
+  },
+  {
     "id": "570609",
     "rarity": "SR",
     "name": "初白百合",
@@ -579,7 +623,7 @@
     "kindokus": [
       "至高の外野手+安打製造機ストライク送球+安打製造機マインドブレイカー+変幻自在"
     ],
-    "eval_text": "Aロマン開花投手B+アンドロメダ強化野手",
+    "eval_text": "Sロマン開花投手B+アンドロメダ強化野手",
     "category": "pitcher"
   },
   {
@@ -914,7 +958,7 @@
     "kindokus": [
       "至高の外野手+高速レーザー大打撃+高速レーザー精密機械+ハイスピンジャイロ"
     ],
-    "eval_text": "B+ロマン開花投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -1874,7 +1918,7 @@
     "kindokus": [
       "切磋琢磨ド根性+完全燃焼精密機械"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -2191,7 +2235,7 @@
     "kindokus": [
       "エースキラー火事場の馬鹿力ミスターゼロ+完全制圧強心臓+ド根性"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -2710,7 +2754,7 @@
     "kindokus": [
       "恐怖の満塁男+昇り龍至高のクローザーエースの風格"
     ],
-    "eval_text": "B+ロマン開花投手",
+    "eval_text": "なし",
     "category": "pitcher"
   },
   {
@@ -6890,6 +6934,51 @@
     "category": "pitcher"
   },
   {
+    "id": "572849",
+    "rarity": "SR",
+    "name": "フォイボス",
+    "short_name": "フォイボス",
+    "icon": "images/572849_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/572849",
+    "role": "レンジャー",
+    "pre_post": "後イベ",
+    "trainings": [
+      "コントロール",
+      "筋力"
+    ],
+    "types": [
+      "投手",
+      "野手"
+    ],
+    "kindokus": [
+      "エースキラー+恐怖の満塁男切磋琢磨カオスハーモニー+ミスターゼロ勇猛果敢+ミスターゼロドクターK"
+    ],
+    "eval_text": "Sロマン開花投手Aアンドロメダ強化野手",
+    "category": "batter"
+  },
+  {
+    "id": "572846",
+    "rarity": "SR",
+    "name": "曙緋緒",
+    "short_name": "曙",
+    "icon": "images/572846_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/572846",
+    "role": "ガード",
+    "pre_post": "後イベ",
+    "trainings": [
+      "打撃",
+      "肩力"
+    ],
+    "types": [
+      "野手"
+    ],
+    "kindokus": [
+      "ストライク送球+明鏡止水金剛不屈の魂"
+    ],
+    "eval_text": "Sアンドロメダ強化野手",
+    "category": "batter"
+  },
+  {
     "id": "570609",
     "rarity": "SR",
     "name": "初白百合",
@@ -7017,7 +7106,7 @@
     "kindokus": [
       "アーチスト+ホームランフィーバー不屈の魂"
     ],
-    "eval_text": "Sアンドロメダ強化野手",
+    "eval_text": "Aアンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7079,7 +7168,7 @@
     "kindokus": [
       "至高の一塁手+一番槍一発逆転王+一番槍メッタ打ち先手必奪"
     ],
-    "eval_text": "Sアンドロメダ強化野手",
+    "eval_text": "Aアンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7524,7 +7613,7 @@
     "kindokus": [
       "至高の外野手+安打製造機ストライク送球+安打製造機マインドブレイカー+変幻自在"
     ],
-    "eval_text": "Aロマン開花投手B+アンドロメダ強化野手",
+    "eval_text": "Sロマン開花投手B+アンドロメダ強化野手",
     "category": "batter"
   },
   {
@@ -7946,7 +8035,7 @@
     "kindokus": [
       "至高の外野手+高速レーザー大打撃+高速レーザー精密機械+ハイスピンジャイロ"
     ],
-    "eval_text": "B+ロマン開花投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -8126,7 +8215,7 @@
     "kindokus": [
       "情熱エール+看破帰巣本能司令塔+鉄の壁帰巣本能司令塔+鉄の壁帰巣本能形勢逆転"
     ],
-    "eval_text": "B+アンドロメダ強化野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -8615,7 +8704,7 @@
     "kindokus": [
       "渾身の決勝打+広角砲勝利の星"
     ],
-    "eval_text": "B+アンドロメダ強化野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -8682,7 +8771,7 @@
     "kindokus": [
       "一番槍+つるべ打ち変幻自在"
     ],
-    "eval_text": "B+アンドロメダ強化野手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
@@ -10777,7 +10866,7 @@
     "kindokus": [
       "恐怖の満塁男+昇り龍至高のクローザーエースの風格"
     ],
-    "eval_text": "B+ロマン開花投手",
+    "eval_text": "なし",
     "category": "batter"
   },
   {
