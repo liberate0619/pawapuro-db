@@ -6934,6 +6934,28 @@
     "category": "pitcher"
   },
   {
+    "id": "574618",
+    "rarity": "SR",
+    "name": "[エアギター]志藤玲美",
+    "short_name": "[ギ]志藤",
+    "icon": "images/574618_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/574618",
+    "role": "ガード",
+    "pre_post": "前イベ",
+    "trainings": [
+      "メンタル",
+      "打撃"
+    ],
+    "types": [
+      "野手"
+    ],
+    "kindokus": [
+      "至高の外野手+ヒートアップカリスマ(野手)+ヒートアップ大打撃完全制圧"
+    ],
+    "eval_text": "Sアンドロメダ強化野手",
+    "category": "batter"
+  },
+  {
     "id": "572849",
     "rarity": "SR",
     "name": "フォイボス",
