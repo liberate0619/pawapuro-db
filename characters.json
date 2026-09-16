@@ -1,5 +1,27 @@
 [
   {
+    "id": "576884",
+    "rarity": "SR",
+    "name": "部長",
+    "short_name": "部長",
+    "icon": "images/576884_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/576884",
+    "role": "ガード",
+    "pre_post": "後イベ",
+    "trainings": [
+      "スタミナ",
+      "球速"
+    ],
+    "types": [
+      "投手"
+    ],
+    "kindokus": [
+      "切磋琢磨必殺火消し人+鉄人(投手)鉄仮面"
+    ],
+    "eval_text": "Sロマン開花投手",
+    "category": "pitcher"
+  },
+  {
     "id": "572849",
     "rarity": "SR",
     "name": "フォイボス",
