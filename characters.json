@@ -1,5 +1,27 @@
 [
   {
+    "id": "577422",
+    "rarity": "SR",
+    "name": "山本由伸",
+    "short_name": "山本",
+    "icon": "images/577422_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/577422",
+    "role": "レンジャー",
+    "pre_post": "後イベ",
+    "trainings": [
+      "コントロール",
+      "変化球"
+    ],
+    "types": [
+      "投手"
+    ],
+    "kindokus": [
+      "ストーンウォール完全制圧+驚異の切れ味ギアチェンジ+驚異の切れ味金縛り"
+    ],
+    "eval_text": "Sロマン開花投手",
+    "category": "pitcher"
+  },
+  {
     "id": "576884",
     "rarity": "SR",
     "name": "部長",
@@ -645,7 +667,7 @@
     "kindokus": [
       "至高の外野手+安打製造機ストライク送球+安打製造機マインドブレイカー+変幻自在"
     ],
-    "eval_text": "Sロマン開花投手B+アンドロメダ強化野手",
+    "eval_text": "Aロマン開花投手B+アンドロメダ強化野手",
     "category": "pitcher"
   },
   {
@@ -757,7 +779,7 @@
     "kindokus": [
       "魔術師孤軍奮闘ともボール+不屈の魂ド根性+不屈の魂マインドブレイカー"
     ],
-    "eval_text": "Sロマン開花投手",
+    "eval_text": "Aロマン開花投手",
     "category": "pitcher"
   },
   {
@@ -1069,7 +1091,7 @@
     "kindokus": [
       "渾身の決勝打+一球入魂至高のリリーバード根性+完全燃焼"
     ],
-    "eval_text": "なし",
+    "eval_text": "B+ロマン開花投手",
     "category": "pitcher"
   },
   {
