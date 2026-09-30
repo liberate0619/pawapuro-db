@@ -1,5 +1,26 @@
 [
   {
+    "id": "578411",
+    "rarity": "SR",
+    "name": "[闇の貴公子]暗黒スバル",
+    "short_name": "[闇貴]星井",
+    "icon": "images/578411_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/578411",
+    "role": "スナイパー",
+    "pre_post": "前イベ",
+    "trainings": [
+      "変化球"
+    ],
+    "types": [
+      "投手"
+    ],
+    "kindokus": [
+      "一発逆転王暗黒星雲+変化球プライド本塁打厳禁+変化球プライド金縛り"
+    ],
+    "eval_text": "Sロマン開花投手",
+    "category": "pitcher"
+  },
+  {
     "id": "577422",
     "rarity": "SR",
     "name": "山本由伸",
