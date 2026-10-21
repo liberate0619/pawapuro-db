@@ -7021,6 +7021,28 @@
     "category": "pitcher"
   },
   {
+    "id": "583227",
+    "rarity": "SR",
+    "name": "[わんこだよ！]パーちゃん",
+    "short_name": "[わ]パー",
+    "icon": "images/583227_SR.png",
+    "url": "https://xn--odkm0eg.gamewith.jp/article/show/583227",
+    "role": "レンジャー",
+    "pre_post": "前イベ",
+    "trainings": [
+      "走塁",
+      "守備"
+    ],
+    "types": [
+      "野手"
+    ],
+    "kindokus": [
+      "洗礼の一撃+ブリッツ意気揚々"
+    ],
+    "eval_text": "なし",
+    "category": "batter"
+  },
+  {
     "id": "580412",
     "rarity": "SR",
     "name": "[キャプテン]御幸一也",
